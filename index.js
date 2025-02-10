@@ -10,8 +10,8 @@ const UNSPLASH_ACCESS_KEY = process.env.UNSPLASH_ACCESS_KEY;
 
 app.get('/', async (req, res) => {
     try {
-        // Fetch a random image from Unsplash
-        const response = await axios.get(`https://api.unsplash.com/photos/random?client_id=${UNSPLASH_ACCESS_KEY}`);
+        // Fetch a random tech-related image from Unsplash
+        const response = await axios.get(`https://api.unsplash.com/photos/random?query=technology&client_id=${UNSPLASH_ACCESS_KEY}`);
         const imageUrl = response.data.urls.regular;
 
         // Send an HTML response with the image
@@ -21,12 +21,16 @@ app.get('/', async (req, res) => {
                     <title>Dockerized Unsplash App</title>
                     <style>
                         body { text-align: center; font-family: Arial, sans-serif; padding: 20px; }
-                        img { max-width: 80%; height: auto; border-radius: 10px; margin-top: 20px; }
+                        .image-container { position: relative; width: 100%; max-width: 80%; margin: 20px auto; }
+                        .image-container::before { content: ""; display: block; padding-top: 56.25%; } /* 16:9 aspect ratio */
+                        img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; border-radius: 10px; }
                     </style>
                 </head>
                 <body>
                     <h1>Fetching an image from Unsplash in a docker container</h1>
-                    <img src="${imageUrl}" alt="Unsplash Random Image">
+                    <div class="image-container">
+                        <img src="${imageUrl}" alt="Unsplash Random Image">
+                    </div>
                     <p>running using docker and jenkins</p>
                 </body>
             </html>
