@@ -31,7 +31,7 @@ app.get('/', async (req, res) => {
                     <div class="image-container">
                         <img src="${imageUrl}" alt="Unsplash Random Image">
                     </div>
-                    <p>running using docker and jenkins</p>
+                    <p>running using docker</p>
                 </body>
             </html>
         `);
