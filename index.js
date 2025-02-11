@@ -1,6 +1,6 @@
-require('dotenv').config();
-const express = require('express');
-const axios = require('axios');
+require('dotenv').config();  // Load environment variables from a .env file into process.env  
+const express = require('express');  // Import the Express framework to create a web server  
+const axios = require('axios');  // Import Axios for making HTTP requests  
 
 const app = express();
 const PORT = 3000;
@@ -41,5 +41,5 @@ app.get('/', async (req, res) => {
     }
 });
 
-// Start the server
+// Start the server here 
 app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
